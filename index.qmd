@@ -1,0 +1,21 @@
+---
+title: "PhenoCrops Project"
+---
+
+Website for crop phenotyping.
+
+Tools required for image analysis
+
+## Resources
+
+Git: <a href="https://git-scm.com/" target="_blank">Version control system</a>
+
+Anaconda: <a href="https://www.anaconda.com/download" target="_blank">Anaconda</a>
+
+Label Studio: <a href="https://labelstud.io/" target="_blank">Label Studio</a>
+
+Labels design: <a href="https://huito.inkaverse.com/" target="_blank">Huito package</a>
+
+Phenoboard: <a href="https://huito.inkaverse.com/img/phenoboard.pdf" target="_blank">Phenotyping board</a>
+
+scale: <a href="https://huito.inkaverse.com/img/scale.pdf" target="_blank">Phenotyping board</a>

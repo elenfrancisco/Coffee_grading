@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+  resources: 
+    - "library"
+
+website:
+  title: "pheno-crops: pisum sativum germination"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: code.qmd
+        text: Coding
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+

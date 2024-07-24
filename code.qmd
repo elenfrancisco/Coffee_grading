@@ -1,0 +1,59 @@
+---
+title: "code"
+editor_options: 
+  chunk_output_type: console
+execute: 
+  warning: false
+  echo: true
+  eval: false
+---
+
+# Image modification
+
+```{r}
+library(tidyverse)
+library(magick)
+
+imgdir <- choose.dir() 
+newdir <- choose.dir() 
+
+imgfiles <- list.files(path = imgdir
+                       , full.names = T
+                       , recursive = T
+                       )
+
+movefiles <- imgfiles %>% 
+  enframe(name = "num", value = "path") %>% 
+  # mutate(imgname = gsub('.*GERM/(.+)', '\\1', path)) %>% 
+  # mutate(across(imgname, ~gsub('/', '_', .))) %>% 
+  # mutate(across(imgname, ~gsub('[[:space:]]', '-', .))) %>% 
+  # mutate(across(imgname, ~gsub('\\(|\\)', '_', .))) %>% 
+  # mutate(across(imgname, ~gsub('__', '_', .))) %>% 
+  mutate(newdir = file.path({{newdir}}, basename(path))) %>% 
+  filter(!str_detect(newdir, "csv"))
+
+nrow(movefiles)
+
+walk(movefiles, \(x) {
+  
+  file.copy(from = movefiles$path, to = movefiles$newdir
+            , overwrite = T)
+})
+```
+
+# Image URL for Label Studio
+
+```{r}
+newdir <- "library/"
+
+imgs <- list.files(path = newdir
+                   , pattern = "jpg|png"
+                   , full.names = T
+                   ) %>% 
+  enframe() %>% 
+  mutate(url = file.path("https://flavjack.github.io/pisum_germination/", value))
+
+imgs %>% 
+  select(url) %>% 
+  write_csv(file.path(newdir, "images4labelstudio.txt"), col_names = F)
+```
