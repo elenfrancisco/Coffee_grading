@@ -51,7 +51,7 @@ imgs <- list.files(path = newdir
                    , full.names = T
                    ) %>% 
   enframe() %>% 
-  mutate(url = file.path("https://flavjack.github.io/pisum_germination/", value))
+  mutate(url = file.path("https://github.com/elenfrancisco/Coffee_grading.git", value))
 
 imgs %>% 
   select(url) %>% 

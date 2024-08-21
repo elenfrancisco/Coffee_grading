@@ -5,7 +5,7 @@ project:
     - "library"
 
 website:
-  title: "pheno-crops: pisum sativum germination"
+  title: "Machine_vision: coffee grading"
   navbar:
     left:
       - href: index.qmd

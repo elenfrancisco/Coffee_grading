@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "PhenoCrops Project",
+    "section": "",
+    "text": "Website for crop phenotyping.\nTools required for image analysis"
+  },
+  {
+    "objectID": "index.html#resources",
+    "href": "index.html#resources",
+    "title": "PhenoCrops Project",
+    "section": "Resources",
+    "text": "Resources\nGit: Version control system\nAnaconda: Anaconda\nLabel Studio: Label Studio\nLabels design: Huito package\nPhenoboard: Phenotyping board\nscale: Phenotyping board"
+  },
+  {
+    "objectID": "code.html",
+    "href": "code.html",
+    "title": "code",
+    "section": "",
+    "text": "Image modification\n\nlibrary(tidyverse)\nlibrary(magick)\n\nimgdir &lt;- choose.dir() \nnewdir &lt;- choose.dir() \n\nimgfiles &lt;- list.files(path = imgdir\n                       , full.names = T\n                       , recursive = T\n                       )\n\nmovefiles &lt;- imgfiles %&gt;% \n  enframe(name = \"num\", value = \"path\") %&gt;% \n  # mutate(imgname = gsub('.*GERM/(.+)', '\\\\1', path)) %&gt;% \n  # mutate(across(imgname, ~gsub('/', '_', .))) %&gt;% \n  # mutate(across(imgname, ~gsub('[[:space:]]', '-', .))) %&gt;% \n  # mutate(across(imgname, ~gsub('\\\\(|\\\\)', '_', .))) %&gt;% \n  # mutate(across(imgname, ~gsub('__', '_', .))) %&gt;% \n  mutate(newdir = file.path({{newdir}}, basename(path))) %&gt;% \n  filter(!str_detect(newdir, \"csv\"))\n\nnrow(movefiles)\n\nwalk(movefiles, \\(x) {\n  \n  file.copy(from = movefiles$path, to = movefiles$newdir\n            , overwrite = T)\n})\n\n\n\nImage URL for Label Studio\n\nnewdir &lt;- \"library/\"\n\nimgs &lt;- list.files(path = newdir\n                   , pattern = \"jpg|png\"\n                   , full.names = T\n                   ) %&gt;% \n  enframe() %&gt;% \n  mutate(url = file.path(\"https://github.com/elenfrancisco/Coffee_grading.git\", value))\n\nimgs %&gt;% \n  select(url) %&gt;% \n  write_csv(file.path(newdir, \"images4labelstudio.txt\"), col_names = F)"
+  }
+]
